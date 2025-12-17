@@ -12,4 +12,5 @@ int main(){
     else {
         cout << "Negative" << endl;
     }
+    return 0;
 }

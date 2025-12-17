@@ -19,4 +19,5 @@ int main(){
     else {
         cout << c << " is the biggest number" << endl;
     }
+    return 0;
 }

@@ -15,4 +15,5 @@ int main(){
     cout << quo << endl;
     cout << "Remainder" << endl;
     cout << rem << endl;
+    return 0;
 }

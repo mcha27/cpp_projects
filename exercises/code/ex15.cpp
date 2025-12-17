@@ -13,4 +13,5 @@ int main(){
     b = temp;
     cout << "A = " << a << endl;
     cout << "B = " << b << endl;
+    return 0;
 }

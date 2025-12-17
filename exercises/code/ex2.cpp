@@ -8,4 +8,5 @@ int main(){
     cin >> input;
     cout << "Printed." << endl;
     cout << input << endl;
+    return 0;
 }

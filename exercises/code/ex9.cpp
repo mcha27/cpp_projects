@@ -10,4 +10,5 @@ int main(){
     float area = ((sqrt(3)) / 4) * pow(a, 2);
     cout << "Area of equilateral triangle: ";
     cout << area << endl;
+    return 0;
 }

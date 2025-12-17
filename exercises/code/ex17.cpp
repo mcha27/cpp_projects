@@ -12,4 +12,5 @@ int main(){
     else {
         cout << "Odd" << endl;
     }
+    return 0;
 }

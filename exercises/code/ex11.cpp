@@ -15,4 +15,5 @@ int main(){
     float perim = (2 * a) + (2 * b);
     cout << "Perimeter of a rectangle: ";
     cout << perim << endl;
+    return 0;
 }

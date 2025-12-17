@@ -12,4 +12,5 @@ int main(){
     float area = (a * b) / 2;
     cout << "Area of a right triangle: ";
     cout << area << endl;
+    return 0;
 }

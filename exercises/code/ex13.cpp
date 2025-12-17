@@ -8,4 +8,5 @@ int main(){
     cin >> ch;
     int convert = int(ch);
     cout << convert << endl;
+    return 0;
 }   

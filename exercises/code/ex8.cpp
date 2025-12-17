@@ -12,4 +12,5 @@ int main(){
     float area = (b * h) / 2;
     cout << "Area of a scalene triangle: ";
     cout << area << endl;
+    return 0;
 }

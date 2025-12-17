@@ -15,4 +15,5 @@ int main(){
     else {
         cout << "Consonant" << endl;
     }
+    return 0;
 }

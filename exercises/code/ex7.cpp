@@ -12,4 +12,5 @@ int main(){
     cout << area << endl;
     cout << "Circumference of circle: " << endl;
     cout << circumference << endl;
+    return 0;
 }

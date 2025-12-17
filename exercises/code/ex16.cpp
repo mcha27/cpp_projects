@@ -22,4 +22,5 @@ int main(){
         far = ((x * 9) / 5) + 32;
         cout << "Fahrenheit value: " << far << endl;
     }
+    return 0;
 }

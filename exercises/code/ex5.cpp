@@ -21,4 +21,5 @@ int main(){
     cout << mult << endl;
     cout << "Dividing two floats." << endl;
     cout << div << endl;
+    return 0;
 }
