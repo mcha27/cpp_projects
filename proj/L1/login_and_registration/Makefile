@@ -1,8 +1,8 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -O2
 
-TARGET = casino
-SRC = casino.cpp
+TARGET = lar
+SRC = lar.cpp
 
 all: $(TARGET)
 
