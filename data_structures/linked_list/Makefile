@@ -5,12 +5,13 @@ SRC_DIR = src
 BIN_DIR = bin
 
 SRCS = $(wildcard $(SRC_DIR)/*.cpp)
-BINS = $(patsubst $(SRC_DIR)/%.cpp,$(BIN_DIR)/%,$(SRCS))
+TARGET = $(BIN_DIR)/main
 
-all: $(BINS)
+all: $(TARGET)
 
-$(BIN_DIR)/%: $(SRC_DIR)/%.cpp
-	$(CXX) $(CXXFLAGS) $< -o $@
+$(TARGET): $(SRCS)
+	@mkdir -p $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) $(SRCS) -o $@
 
 clean:
-	rm -f $(BINS)
+	rm -f $(TARGET)
