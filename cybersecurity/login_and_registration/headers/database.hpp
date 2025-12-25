@@ -19,6 +19,7 @@ class Database {
         Database(sqlite3* d);
         void create_table();
         void register_user(User* user);
+        std::string hash_password(std::string& password);
 };
 
 
