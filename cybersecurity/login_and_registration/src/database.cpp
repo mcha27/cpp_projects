@@ -13,13 +13,6 @@
 #include "../headers/database.hpp"
 using namespace std;
 
-/*
-    - create database(sqlite3* db)
-    - register_user(User* user)
-    - check_user(username)
-    - hash_passwords(password)
-*/
-
 Database::Database(sqlite3* d)
     : db(d) {}
 
@@ -39,10 +32,10 @@ void Database::create_table(){
     }
 }
 
-void Database::register_user(User* user){
+bool Database::register_user(User* user){
     sqlite3_stmt* stmt;
-    std::string username = user->username;
-    std::string password = user->password;
+    string username = user->username;
+    string password = user->password;
 
     const char* insert = "INSERT INTO USERS (USERNAME, PASSWORD_HASH) VALUES (?, ?);";
 
@@ -50,29 +43,54 @@ void Database::register_user(User* user){
     if (rc != SQLITE_OK) {
         cerr << "Failed to prepare statement: " << sqlite3_errmsg(db) << endl;
         sqlite3_close(db);
+        return false;
     }
     string hash = hash_password(password);
     sqlite3_bind_text(stmt, 1, username.c_str(), -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(stmt, 2, hash.c_str(), -1, SQLITE_TRANSIENT);
     rc = sqlite3_step(stmt);
 
-    if (rc != SQLITE_DONE) {
-        cerr << "USERNAME IS ALREADY REGISTERED." << endl;
+    sqlite3_finalize(stmt);
+    if (rc == SQLITE_DONE) {
+        cout << "REGISTRATION SUCCESSFUL\n";
+        return true;
+    }
+
+    if (rc == SQLITE_CONSTRAINT) {
+        cout << "USERNAME ALREADY EXISTS\n";
     } else {
-        cout << "REGISTRATION IS SUCCESSFUL." << endl;
+        cerr << "SQLite error: " << sqlite3_errmsg(db) << "\n";
+    }
+    return false;
+}
+
+bool Database::login_user(string username, string password){
+    const char* sql = "SELECT 1 FROM USERS WHERE USERNAME = ? AND PASSWORD_HASH = ?;";
+
+    sqlite3_stmt* stmt = nullptr;
+
+    if (sqlite3_prepare_v2(db, sql, -1, &stmt, nullptr) != SQLITE_OK) {
+        cerr << "Prepare failed: " << sqlite3_errmsg(db) << "\n";
+        return false;
+    }
+
+    sqlite3_bind_text(stmt, 1, username.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 2, password.c_str(), -1, SQLITE_TRANSIENT);
+
+    int rc = sqlite3_step(stmt);
+
+    if (rc == SQLITE_ROW) {
+        cout << "Login successful\n";
+        return true;
+    } else {
+        cout << "Invalid username or password\n";
+        return false;
     }
 
     sqlite3_finalize(stmt);
 }
 
 string Database::hash_password(string& password) {
-    unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-    mt19937 engine(seed); 
-    uniform_int_distribution<int> dist(1, 10000);
-
-    int salt = dist(engine);
-    password += to_string(salt);
-
     EVP_MD_CTX* ctx = EVP_MD_CTX_new();
     if (!ctx) {
         throw runtime_error("EVP_MD_CTX_new failed");
@@ -98,7 +116,7 @@ string Database::hash_password(string& password) {
 
     EVP_MD_CTX_free(ctx);
 
-    std::ostringstream oss;
+    ostringstream oss;
     for (unsigned int i = 0; i < length; ++i) {
         oss << hex << setw(2) << setfill('0')
             << static_cast<int>(hash[i]);
@@ -106,3 +124,4 @@ string Database::hash_password(string& password) {
 
     return oss.str();
 }
+
