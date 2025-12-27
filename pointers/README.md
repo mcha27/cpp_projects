@@ -1,21 +1,9 @@
-https://erlerobotics.gitbooks.io/erle-robotics-cpp-gitbook/content/pointers/exercises_pointers.html
-
-
-Exercise 1
-
-Write a program that asks the user to enter integers as inputs to be stored in the variables 'a' and 'b' respectively. There are also two integer pointers named ptrA and ptrB. Assign the values of 'a' and 'b' to ptrA and ptrB respectively, and display them.
-
-
-Exercise 2
-
-Write a C++ program to find the max of an integral data set. The program will ask the user to input the number of data values in the set and each value. The program prints on screen a pointer that points to the max value.
-
-
-Exercise 3
-
-Take input in variable and display same value by pointer.
-
-
-Exercise 4
-
-Given the string "A string." Print on one line the letter on the index 0, the pointer position and the letter t. undate the pointer to pointer +2. Then, in another line print the pointer and the letters r and g of the string (using the pointer).
+1. Simple Pointer Declaration - Declare a pointer variable ptr that can store the address of an integer. Initialize it with the address of an integer variable num and display the value pointed to by ptr. 
+2. Pointer Arithmetic - Declare an array of integers, then declare a pointer and initialize it with the address of the first element of the array. Use pointer arithmetic to display the third element of the array. 
+3. Dynamic Memory Allocation - Allocate memory for an integer dynamically using new. Assign a value to the allocated memory and display it. Don't forget to release the memory using delete. 
+4. Array of Pointers - Declare an array of three integers and an array of three pointers to integers. Initialize each pointer with the address of the corresponding integer in the first array and display the values pointed to by the pointers. 
+5. Function Pointers - Declare a function add that takes two integers as parameters and returns their sum. Declare a function pointer ptr that can point to this function. Use the pointer to call the add function. 
+6. Pointer to Pointer - Declare an integer variables a. Declare a pointer ptr1 that points to a, and a pointer ptr2 that points to ptr1. Assign a value to a using ptr2 and display the value of a. 
+7. Pointers and Functions - Write a function swap that takes two integer pointers and swaps the values they point to. Write a program to input two integers, call the swap function, and display the swapped values. 
+8. Pointers and Strings - Write a function stringLength that takes a pointer to a character array (string) and returns the length of the string. Write a program to input a string, call the function, and display the length. 
+9. Pointers and Structures - Declare a structure Person with members name (string) and age (integer). Declare a pointer to a Person structure and dynamically allocate memory for it. Input values for name and age using the pointer and display them.
